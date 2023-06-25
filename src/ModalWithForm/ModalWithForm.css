@@ -1,0 +1,37 @@
+/* .modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+} */
+
+/* .modal__container {
+  width: 430px;
+  height: 330px;
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 35px 36px;
+  margin: auto;
+} */
+/* .modal__form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+} */
+/* .modal__save-btn {
+  width: 124px;
+  height: 36px;
+} */

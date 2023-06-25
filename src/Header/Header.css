@@ -1,0 +1,20 @@
+.header {
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  color: #000;
+  font-size: 20px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.header__section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.header__avatar {
+  width: 40px;
+}
