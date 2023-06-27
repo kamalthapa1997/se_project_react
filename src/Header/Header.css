@@ -18,3 +18,39 @@
 .header__avatar {
   width: 40px;
 }
+.header__btn {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0);
+  transition: color 0.3s linear;
+  font-size: 20px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  line-height: 24px;
+}
+.header__btn:hover {
+  color: rgba(0, 0, 0), o.5;
+}
+@media screen and (max-width: 600px) {
+  .header__logo {
+    width: 30px;
+  }
+  .header__info {
+    margin: 0;
+    font-size: 12px;
+  }
+  .header__section {
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+  .header__avatar {
+    width: 35px;
+  }
+}

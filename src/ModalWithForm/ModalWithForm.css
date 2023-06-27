@@ -1,4 +1,4 @@
-/* .modal {
+.modal {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -10,28 +10,119 @@
   right: 0;
   left: 0;
   bottom: 0;
-} */
+}
 
-/* .modal__container {
-  width: 430px;
-  height: 330px;
+.modal__container {
   background-color: #ffffff;
   position: relative;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 35px 36px;
   margin: auto;
-} */
-/* .modal__form {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+  width: 496px;
+  height: 457px;
+}
+.modal__container_preview {
+  width: 498px;
   padding: 0;
-  border: none;
+  height: 610px;
   overflow: hidden;
-} */
-/* .modal__save-btn {
+  border-radius: 16px;
+}
+.modal__close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: url(../images/exit.svg) transparent no-repeat center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 1;
+}
+.modal__close:hover {
+  opacity: 0.6;
+}
+.modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+  display: block;
+  padding-top: 28px;
+}
+.modal__input {
+  margin-top: 8px;
+  display: block;
+  width: 440px;
+  height: 20px;
+  border-right: 0;
+  border-top: 0;
+  border-left: 0;
+  padding: 0;
+  border-bottom: 1px rgba(0, 0, 0, 1) solid;
+}
+.modal__input::placeholder {
+  font-size: 16px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+}
+.modal__title {
+  margin: 0;
+}
+.modal__checkbox-title {
+  margin: 0;
+  padding-top: 28px;
+  color: #000;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.modal__weather-box {
+  padding-top: 12px;
+}
+.modal__image {
+  width: 100%;
+}
+.modal__image-caption {
+  padding-top: 12px;
+  padding-left: 32px;
+  font-size: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 24px;
+}
+.modal__submit {
   width: 124px;
   height: 36px;
-} */
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  background: rgba(0, 0, 0);
+  margin-top: 30px;
+  transition: background 0.2s linear;
+  cursor: pointer;
+}
+.modal__submit:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.form__label {
+  display: block;
+  padding-top: 12px;
+  color: #000;
+  font-size: 16px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  line-height: 20px;
+}
+.form__input {
+  margin: 0px 5px 0px 0;
+}

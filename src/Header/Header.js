@@ -1,19 +1,37 @@
 import "./Header.css";
-const Header = () => {
+import avatar from "../images/avatar.svg";
+import logo from "../images/Logo.svg";
+
+const Header = ({
+  location,
+  date,
+  handleCreateModal,
+  modalExit,
+  name = "Terrence Tegegne",
+}) => {
   return (
     <header className="header">
       <div className=" header__section ">
         <div>
-          <img src="/images/Logo.svg " />
+          <img className="header__logo" src={logo} alt="Logo" />
         </div>
-        <div>date</div>
+        <p className=" header__info">
+          {date}, {location}
+        </p>
       </div>
 
       <div className=" header__section">
-        <div>+ Add clothes</div>
-        <div>name</div>
+        <button
+          type="button"
+          className="header__btn"
+          onKeyDown={modalExit}
+          onClick={handleCreateModal}
+        >
+          + Add clothes
+        </button>
+        <p>{name}</p>
         <div>
-          <img className="header__avatar" src="/images/avatar.svg " />
+          <img className="header__avatar" alt="Profile avatar" src={avatar} />
         </div>
       </div>
     </header>

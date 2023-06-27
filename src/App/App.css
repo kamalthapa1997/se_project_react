@@ -1,0 +1,24 @@
+.Appbody {
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 32px 40px 0;
+}
+input[type="radio"] {
+  accent-color: #232323;
+}
+
+.modal__radio {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+@media screen and (max-width: 600px) {
+  .Appbody {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
