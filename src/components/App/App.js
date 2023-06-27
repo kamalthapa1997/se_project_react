@@ -9,7 +9,7 @@ import {
   getWeatheraForecast,
   parseWeatherData,
   parseWeatherPlace,
-} from "../utils/WeatherApi";
+} from "../../utils/WeatherApi";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {

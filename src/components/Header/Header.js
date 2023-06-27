@@ -1,6 +1,6 @@
 import "./Header.css";
-import avatar from "../images/avatar.svg";
-import logo from "../images/Logo.svg";
+import avatar from "../../images/avatar.svg";
+import logo from "../../images/Logo.svg";
 
 const Header = ({
   location,

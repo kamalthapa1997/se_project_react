@@ -1,13 +1,13 @@
 import "./WheatherCard.css";
 
-import sunnyDay from "../images/day/sunnyDay.svg";
-import fogDay from "../images/day/fogDay.svg";
-import rainDay from "../images/day/rainDay.svg";
-import snowDay from "../images/day/snowDay.svg";
-import stromDay from "../images/day/stromDay.svg";
-import cloudyDay from "../images/day/cloudyDay.svg";
-import cloudyNighy from "../images/night/cloudyNight.svg";
-import sunnyNighy from "../images/night/sunnyNight.svg";
+import sunnyDay from "../../images/day/sunnyDay.svg";
+import fogDay from "../../images/day/fogDay.svg";
+import rainDay from "../../images/day/rainDay.svg";
+import snowDay from "../../images/day/snowDay.svg";
+import stromDay from "../../images/day/stromDay.svg";
+import cloudyDay from "../../images/day/cloudyDay.svg";
+import cloudyNighy from "../../images/night/cloudyNight.svg";
+import sunnyNighy from "../../images/night/sunnyNight.svg";
 
 const WheatherOptions = [
   { url: sunnyDay, type: "sunny", day: true },
