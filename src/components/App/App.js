@@ -42,7 +42,7 @@ function App() {
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, []);
   useEffect(() => {
     getWeatheraForecast().then((data) => {
       const place = parseWeatherPlace(data);
