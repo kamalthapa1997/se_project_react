@@ -38,16 +38,12 @@ function App() {
       .then((data) => {
         const temp = parseWeatherData(data);
         setTemperature(temp);
+        const place = parseWeatherPlace(data);
+        setUserLocation(place);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, []);
-  useEffect(() => {
-    getWeatheraForecast().then((data) => {
-      const place = parseWeatherPlace(data);
-      setUserLocation(place);
-    });
   }, []);
 
   const modalExit = (evt) => {
@@ -71,7 +67,11 @@ function App() {
       />
       <Footer />
       {activeModal === "createModal" && (
-        <ModalWithForm handleModalClose={handleModalClose} title="New Garment">
+        <ModalWithForm
+          handleModalClose={handleModalClose}
+          title="New Garment"
+          buttonText="New garment"
+        >
           <label className="modal__label">
             Name
             <input

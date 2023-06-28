@@ -2,12 +2,11 @@ import "./WheatherCard.css";
 import { wheatherOptions } from "../../utils/constant";
 
 const WheatherCard = ({ day, type, wheatherTemp = "" }) => {
-  const weatherImageSrc = wheatherOptions.find((item) => {
+  const weatherOption = wheatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
-  console.log(weatherImageSrc);
 
-  const weatherImageSrcUrl = weatherImageSrc?.url || "";
+  const weatherImageSrcUrl = weatherOption?.url || "";
 
   return (
     <section className="Weather">
