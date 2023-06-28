@@ -1,3 +1,12 @@
+import sunnyDay from "../images/day/sunnyDay.svg";
+import fogDay from "../images/day/fogDay.svg";
+import rainDay from "../images/day/rainDay.svg";
+import snowDay from "../images/day/snowDay.svg";
+import stromDay from "../images/day/stromDay.svg";
+import cloudyDay from "../images/day/cloudyDay.svg";
+import cloudyNighy from "../images/night/cloudyNight.svg";
+import sunnyNighy from "../images/night/sunnyNight.svg";
+
 export const defaultClothingItems = [
   {
     _id: 0,
@@ -40,15 +49,6 @@ const latitude = 51.485927;
 const longitude = 0.24995;
 const APIkey = "b6a1d1deb8601a340db0f9a5af50aa24";
 export { latitude, longitude, APIkey };
-
-import sunnyDay from "../images/day/sunnyDay.svg";
-import fogDay from "../images/day/fogDay.svg";
-import rainDay from "../images/day/rainDay.svg";
-import snowDay from "../images/day/snowDay.svg";
-import stromDay from "../images/day/stromDay.svg";
-import cloudyDay from "../images/day/cloudyDay.svg";
-import cloudyNighy from "../images/night/cloudyNight.svg";
-import sunnyNighy from "../images/night/sunnyNight.svg";
 
 export const wheatherOptions = [
   { url: sunnyDay, type: "sunny", day: true },

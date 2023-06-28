@@ -2,7 +2,7 @@ import WheatherCard from "../WheatherCard/WheatherCard";
 
 import ItemCard from "../../ItemCard/ItemCard";
 
-import { defaultClothingItems } from "../../utils/Constant";
+import { defaultClothingItems } from "../../utils/constant";
 
 // import "./Main.css";
 

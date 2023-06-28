@@ -1,5 +1,5 @@
 import "./WheatherCard.css";
-import { wheatherOptions } from "../../utils/Constant";
+import { wheatherOptions } from "../../utils/constant";
 
 const WheatherCard = ({ day, type, wheatherTemp = "" }) => {
   const weatherImageSrc = wheatherOptions.filter((item) => {
