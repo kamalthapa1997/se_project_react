@@ -35,7 +35,8 @@
   position: absolute;
   top: 20px;
   right: 28px;
-  background: url(../../images/exit.svg) transparent no-repeat center;
+  background: url(../../images/closeBtn.svg) transparent no-repeat center;
+  mix-blend-mode: multiply;
   border: none;
   padding: 0;
   cursor: pointer;

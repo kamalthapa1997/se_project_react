@@ -1,5 +1,5 @@
 import "./ItemCard.css";
-const ItemCard = ({ item, onSelectCard, modalExit }) => {
+const ItemCard = ({ item, onSelectCard, closeModal }) => {
   return (
     <div className="card__section">
       <div>
@@ -7,9 +7,8 @@ const ItemCard = ({ item, onSelectCard, modalExit }) => {
           className="card__image"
           src={item.link}
           alt={item.name}
-          onKeyDown={modalExit}
+          onKeyDown={closeModal}
           onClick={() => {
-            console.log("lol");
             onSelectCard(item);
           }}
         />

@@ -2,13 +2,7 @@ import "./Header.css";
 import avatar from "../../images/avatar.svg";
 import logo from "../../images/Logo.svg";
 
-const Header = ({
-  location,
-  date,
-  handleCreateModal,
-  modalExit,
-  name = "Terrence Tegegne",
-}) => {
+const Header = ({ location, date, handleCreateModal, modalExit }) => {
   return (
     <header className="header">
       <div className=" header__section ">
@@ -29,7 +23,7 @@ const Header = ({
         >
           + Add clothes
         </button>
-        <p>{name}</p>
+        <p>Terrence Tegegne</p>
         <div>
           <img className="header__avatar" alt="Profile avatar" src={avatar} />
         </div>

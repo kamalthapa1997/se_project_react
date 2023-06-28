@@ -4,7 +4,8 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
-import ModalPreview from "../ItemCard/ItemModal/ItemModal";
+import ModalPreview from "../ItemModal/ItemModal";
+
 import {
   getWeatheraForecast,
   parseWeatherData,
@@ -17,41 +18,41 @@ function App() {
     day: "numeric",
   });
 
-  const [ActiveModal, SetActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temperature, setTemperature] = useState(0);
   const [userLocation, setUserLocation] = useState("");
   const handleCreateModal = () => {
-    SetActiveModal("createModal");
+    setActiveModal("createModal");
   };
   const handleModalClose = () => {
-    SetActiveModal("");
+    setActiveModal("");
   };
   const handleSelectedCard = (card) => {
-    SetActiveModal("itemPreview");
+    setActiveModal("itemPreview");
     setSelectedCard(card);
   };
 
   useEffect(() => {
-    getWeatheraForecast().then((data) => {
-      const temp = parseWeatherData(data);
-      setTemperature(temp);
-    });
+    getWeatheraForecast()
+      .then((data) => {
+        const temp = parseWeatherData(data);
+        setTemperature(temp);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   });
   useEffect(() => {
     getWeatheraForecast().then((data) => {
       const place = parseWeatherPlace(data);
       setUserLocation(place);
     });
-  });
+  }, []);
 
   const modalExit = (evt) => {
-    if (
-      evt.key === "Escape" &&
-      (ActiveModal === "createModal" || ActiveModal === "itemPreview")
-    ) {
-      console.log("kamal");
-      return SetActiveModal("");
+    if (evt.key === "Escape" && activeModal !== "") {
+      return setActiveModal("");
     }
   };
 
@@ -64,12 +65,12 @@ function App() {
         handleCreateModal={handleCreateModal}
       />
       <Main
-        modalExit={modalExit}
+        closeModal={modalExit}
         wheatherTemp={temperature}
         onSelectCard={handleSelectedCard}
       />
       <Footer />
-      {ActiveModal === "createModal" && (
+      {activeModal === "createModal" && (
         <ModalWithForm handleModalClose={handleModalClose} title="New Garment">
           <label className="modal__label">
             Name
@@ -125,7 +126,7 @@ function App() {
           </fieldset>
         </ModalWithForm>
       )}
-      {ActiveModal === "itemPreview" && (
+      {activeModal === "itemPreview" && (
         <ModalPreview
           selectedCard={selectedCard}
           handleModalClose={handleModalClose}

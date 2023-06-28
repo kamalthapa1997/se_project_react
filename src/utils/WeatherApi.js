@@ -1,6 +1,4 @@
-const latitude = 51.485927;
-const longitude = 0.24995;
-const APIkey = "b6a1d1deb8601a340db0f9a5af50aa24";
+import { latitude, longitude, APIkey } from "./Constant";
 
 export const getWeatheraForecast = () => {
   const weatherApi = fetch(

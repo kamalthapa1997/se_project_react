@@ -3,7 +3,7 @@ const ModalWithForm = ({
   name,
   children,
   title,
-  buttonText = "New garment",
+  buttonText,
   handleModalClose,
 }) => {
   return (
@@ -17,12 +17,10 @@ const ModalWithForm = ({
         <h3 className="modal__title">{title}</h3>
         <form> {children}</form>
         <button className="modal__submit" type="button">
-          {buttonText}
+          {(buttonText = "New garment")}
         </button>
       </div>
     </div>
   );
 };
 export default ModalWithForm;
-
-const closeModal = (event) => {};

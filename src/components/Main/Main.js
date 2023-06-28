@@ -1,11 +1,13 @@
 import WheatherCard from "../WheatherCard/WheatherCard";
-import ItemCard from "../ItemCard/ItemCard";
+
+import ItemCard from "../../ItemCard/ItemCard";
+
 import { defaultClothingItems } from "../../utils/Constant";
-import { useMemo } from "react";
+
 // import "./Main.css";
 
 function Main({ modalExit, wheatherTemp, onSelectCard }) {
-  const weatherType = useMemo(() => {
+  const getWeatherType = () => {
     if (wheatherTemp >= 86) {
       return "hot";
     } else if (wheatherTemp >= 66 && wheatherTemp <= 85) {
@@ -13,7 +15,8 @@ function Main({ modalExit, wheatherTemp, onSelectCard }) {
     } else if (wheatherTemp <= 65) {
       return "cold";
     }
-  }, [wheatherTemp]);
+  };
+  const weatherType = getWeatherType();
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
@@ -30,6 +33,7 @@ function Main({ modalExit, wheatherTemp, onSelectCard }) {
           {filteredCards.map((item) => {
             return (
               <ItemCard
+                key={item._id}
                 item={item}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}
