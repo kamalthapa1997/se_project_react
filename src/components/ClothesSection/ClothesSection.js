@@ -4,9 +4,9 @@ const ClothingSection = ({ clothingItems }) => {
   return (
     <div>
       <div className="clothes">
-        <div className=" clothing__items">
-          <p>Your Items</p>
-          <p>+ Add new</p>
+        <div className=" clothes__captions">
+          <p className="clothes__caption">Your Items</p>
+          <p className="clothes__caption">+ Add new</p>
         </div>
         <div className="clothes__items">
           {clothingItems.map((item) => {

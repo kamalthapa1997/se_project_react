@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import WheatherCard from "../WheatherCard/WheatherCard";
+
+import WeatherCard from "../WeatherCard/WheatherCard";
 
 import ItemCard from "../ItemCard/ItemCard";
 
@@ -29,7 +30,7 @@ function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
 
   return (
     <section filteredcards={clothingItems} className="Main">
-      <WheatherCard day={true} type="rain" wheatherTemp={Temp} />
+      <WeatherCard day={true} type="rain" wheatherTemp={Temp} />
       <section className="cards" id="cards">
         <div className="card__heading">
           Today is {Temp}/ You may want to wear:

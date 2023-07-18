@@ -1,6 +1,9 @@
-.clothing__items {
+.clothes__items {
   display: flex;
   gap: 20px;
+}
+.clothes__caption {
+  margin: 0;
 }
 .clothes {
   width: 1005px;
@@ -9,7 +12,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: end;
+}
+.clothes__captions {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  gap: 16px;
 }
 .clothes__item {
   display: flex;

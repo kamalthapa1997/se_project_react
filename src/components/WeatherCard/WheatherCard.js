@@ -1,7 +1,7 @@
-import "./WheatherCard.css";
+import "./WeatherCard.css";
 import { wheatherOptions } from "../../utils/constant";
 
-const WheatherCard = ({ day, type, wheatherTemp = "" }) => {
+const WeatherCard = ({ day, type, wheatherTemp = "" }) => {
   const weatherOption = wheatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
@@ -15,4 +15,4 @@ const WheatherCard = ({ day, type, wheatherTemp = "" }) => {
     </section>
   );
 };
-export default WheatherCard;
+export default WeatherCard;
