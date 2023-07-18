@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ModalPreview = ({ selectedCard, handleModalClose, handleDelete }) => {
+const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
   // const [deleteModal, setDeleteModal] = useState("");
 
   const handleDeleteModal = () => {
@@ -36,4 +36,4 @@ const ModalPreview = ({ selectedCard, handleModalClose, handleDelete }) => {
     </div>
   );
 };
-export default ModalPreview;
+export default ItemModal;

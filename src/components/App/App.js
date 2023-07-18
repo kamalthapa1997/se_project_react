@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
-import ModalPreview from "../ItemModal/ItemModal";
+import ItemModal from "../ItemModal/ItemModal";
 import { getItems, deleteItems, postNewItems } from "../../utils/Api";
 
 import {
@@ -138,7 +138,7 @@ function App() {
           />
         )}
         {activeModal === "itemPreview" && (
-          <ModalPreview
+          <ItemModal
             handleDelete={() => handleDelete(selectedCard.id)}
             selectedCard={selectedCard}
             handleModalClose={handleModalClose}
