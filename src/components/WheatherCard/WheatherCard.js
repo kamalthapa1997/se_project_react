@@ -10,7 +10,7 @@ const WheatherCard = ({ day, type, wheatherTemp = "" }) => {
 
   return (
     <section className="Weather">
-      <p className="Weather__update">{wheatherTemp}&deg;F</p>
+      <p className="Weather__update">{wheatherTemp}</p>
       <img className="Weather__updatebg" src={weatherImageSrcUrl} />
     </section>
   );

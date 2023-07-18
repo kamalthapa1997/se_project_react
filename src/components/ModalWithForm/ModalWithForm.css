@@ -85,15 +85,19 @@
   padding-top: 12px;
 }
 .modal__image {
+  width: 480px;
+  height: 480px;
   width: 100%;
 }
 .modal__image-caption {
-  padding-top: 12px;
   padding-left: 32px;
   font-size: 20px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   line-height: 24px;
+}
+.modal__image-caption:last-of-type {
+  padding-top: 12px;
 }
 .modal__submit {
   width: 124px;
@@ -126,4 +130,24 @@
 }
 .form__input {
   margin: 0px 5px 0px 0;
+}
+
+.modal__details {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 218px;
+  display: flex;
+  padding-top: 12px;
+}
+.modal__dlt-tag {
+  color: #ff4d00;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
 }

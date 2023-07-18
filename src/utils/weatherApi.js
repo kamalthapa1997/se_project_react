@@ -1,4 +1,5 @@
 import { latitude, longitude, APIkey } from "./constant";
+
 const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -16,10 +17,16 @@ export const getWeatheraForecast = () => {
 
 export const parseWeatherData = (data) => {
   const main = data.main;
-
   const temperature = main && main.temp;
 
-  return Math.ceil(temperature);
+  const weather = {
+    temperature: {
+      F: `${Math.round(temperature)}°F`,
+      C: `${Math.round(((temperature - 32) * 5) / 9)}°C`,
+    },
+  };
+
+  return weather;
 };
 export const parseWeatherPlace = (data) => {
   const main = data.name;

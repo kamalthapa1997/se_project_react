@@ -5,7 +5,7 @@ const ItemCard = ({ item, onSelectCard, closeModal }) => {
       <div>
         <img
           className="card__image"
-          src={item.link}
+          src={item.imageUrl}
           alt={item.name}
           onKeyDown={closeModal}
           onClick={() => {

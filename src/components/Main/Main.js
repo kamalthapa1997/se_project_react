@@ -1,39 +1,44 @@
+import { useContext } from "react";
 import WheatherCard from "../WheatherCard/WheatherCard";
 
 import ItemCard from "../ItemCard/ItemCard";
 
 import { defaultClothingItems } from "../../utils/constant";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 // import "./Main.css";
 
-function Main({ modalExit, wheatherTemp, onSelectCard }) {
+function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const Temp = wheatherTemp?.temperature?.[currentTemperatureUnit];
+
   const getWeatherType = () => {
-    if (wheatherTemp >= 86) {
+    if (parseInt(Temp) >= 86) {
       return "hot";
-    } else if (wheatherTemp >= 66 && wheatherTemp <= 85) {
+    } else if (parseInt(Temp) >= 66 && parseInt(Temp) <= 85) {
       return "warm";
-    } else if (wheatherTemp <= 65) {
+    } else if (parseInt(Temp) <= 65) {
       return "cold";
     }
   };
   const weatherType = getWeatherType();
 
-  const filteredCards = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+  const filteredcards = clothingItems.filter((item) => {
+    return item.weather === weatherType;
   });
 
   return (
-    <section className="Main">
-      <WheatherCard day={true} type="rain" wheatherTemp={wheatherTemp} />
+    <section filteredcards={clothingItems} className="Main">
+      <WheatherCard day={true} type="rain" wheatherTemp={Temp} />
       <section className="cards" id="cards">
         <div className="card__heading">
-          Today is {wheatherTemp}&deg; F/ You may want to wear:
+          Today is {Temp}/ You may want to wear:
         </div>
         <div className="card__items">
-          {filteredCards.map((item) => {
+          {filteredcards.map((item) => {
             return (
               <ItemCard
-                key={item._id}
+                key={item.id}
                 item={item}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}

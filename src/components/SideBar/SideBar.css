@@ -1,0 +1,15 @@
+.SideBar {
+  display: flex;
+  gap: 16px;
+}
+.Profile__avatar {
+  width: 56px;
+  height: 56px;
+}
+.profile__name {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+
+  font-weight: 700;
+}

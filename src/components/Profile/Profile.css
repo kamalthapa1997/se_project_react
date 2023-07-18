@@ -1,0 +1,6 @@
+.Profile {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 47px;
+  gap: 116px;
+}

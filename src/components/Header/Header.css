@@ -10,6 +10,9 @@
   font-weight: 700;
   line-height: 1.2;
 }
+.header__logo {
+  cursor: pointer;
+}
 .header__section {
   display: flex;
   align-items: center;
@@ -17,6 +20,11 @@
 }
 .header__avatar {
   width: 40px;
+}
+.header__profile-name {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
 }
 .header__btn {
   padding: 0;

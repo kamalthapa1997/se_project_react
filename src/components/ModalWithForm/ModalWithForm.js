@@ -5,6 +5,8 @@ const ModalWithForm = ({
   title,
   buttonText,
   handleModalClose,
+  isOpen,
+  onSubmit,
 }) => {
   return (
     <div className={`modal modal__tupe_${name}`}>
@@ -15,10 +17,10 @@ const ModalWithForm = ({
           className="modal__close"
         />
         <h3 className="modal__title">{title}</h3>
-        <form> {children}</form>
-        <button className="modal__submit" type="button">
-          {buttonText}
-        </button>
+        <form onSubmit={onSubmit}>
+          {children}
+          <button className="modal__submit">{buttonText}</button>
+        </form>
       </div>
     </div>
   );

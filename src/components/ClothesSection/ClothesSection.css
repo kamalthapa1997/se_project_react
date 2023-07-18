@@ -1,0 +1,31 @@
+.clothing__items {
+  display: flex;
+  gap: 20px;
+}
+.clothes {
+  width: 1005px;
+}
+.clothes__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: end;
+}
+.clothes__item {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.clothes__image {
+  width: 323px;
+  height: 326px;
+}
+.clothes__name {
+  top: 17px;
+  position: absolute;
+  background: white;
+  border-radius: 2px;
+}
