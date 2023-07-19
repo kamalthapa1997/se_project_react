@@ -1,6 +1,6 @@
 import React from "react";
 import "./ClothesSection.css";
-const ClothingSection = ({ clothingItems }) => {
+const ClothesSection = ({ clothingItems }) => {
   return (
     <div>
       <div className="clothes">
@@ -27,4 +27,4 @@ const ClothingSection = ({ clothingItems }) => {
     </div>
   );
 };
-export default ClothingSection;
+export default ClothesSection;

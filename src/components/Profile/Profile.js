@@ -2,13 +2,13 @@ import React from "react";
 
 import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
-import ClothingSection from "../ClothesSection/ClothesSection";
+import ClothesSection from "../ClothesSection/ClothesSection";
 const Profile = ({ clothingItems }) => {
   return (
     <div className="Profile">
       <SideBar />
 
-      <ClothingSection clothingItems={clothingItems} />
+      <ClothesSection clothingItems={clothingItems} />
     </div>
   );
 };
