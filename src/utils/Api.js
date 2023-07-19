@@ -1,7 +1,6 @@
-import React from "react";
 const baseUrl = "http://localhost:3001";
 
-const processResponse = (res) => {
+export const processResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -24,11 +23,7 @@ export function postNewItems({ name, weatherType, link }) {
       weather: weatherType,
       imageUrl: link,
     }),
-  })
-    .then(processResponse)
-    .then((data) => {
-      return data;
-    });
+  }).then(processResponse);
 }
 
 export function deleteItems(id) {

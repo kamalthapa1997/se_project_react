@@ -8,7 +8,7 @@ const AddItemModal = ({ handleModalClose, isOpen, onAddItem }) => {
     setName(e.target.value);
   };
 
-  const [link, setUrl] = useState();
+  const [link, setUrl] = useState("");
   const handleUrlChange = (e) => {
     setUrl(e.target.value);
   };

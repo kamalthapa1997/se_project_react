@@ -30,6 +30,7 @@
 .clothes__image {
   width: 323px;
   height: 326px;
+  cursor: pointer;
 }
 .clothes__name {
   top: 17px;

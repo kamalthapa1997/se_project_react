@@ -7,19 +7,27 @@ import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constant";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-// import "./Main.css";
-
 function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const Temp = wheatherTemp?.temperature?.[currentTemperatureUnit];
+  const temp = wheatherTemp?.temperature?.[currentTemperatureUnit];
 
   const getWeatherType = () => {
-    if (parseInt(Temp) >= 86) {
-      return "hot";
-    } else if (parseInt(Temp) >= 66 && parseInt(Temp) <= 85) {
-      return "warm";
-    } else if (parseInt(Temp) <= 65) {
-      return "cold";
+    if (currentTemperatureUnit === "F") {
+      if (parseInt(temp) >= 86) {
+        return "hot";
+      } else if (parseInt(temp) >= 66 && parseInt(temp) <= 85) {
+        return "warm";
+      } else if (parseInt(temp) <= 65) {
+        return "cold";
+      }
+    } else if (currentTemperatureUnit === "C") {
+      if (parseInt(temp) >= 30) {
+        return "hot";
+      } else if (parseInt(temp) >= 19 && parseInt(temp) <= 30) {
+        return "warm";
+      } else if (parseInt(temp) <= 18) {
+        return "cold";
+      }
     }
   };
   const weatherType = getWeatherType();
@@ -30,17 +38,19 @@ function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
 
   return (
     <section filteredcards={clothingItems} className="Main">
-      <WeatherCard day={true} type="rain" wheatherTemp={Temp} />
+      <WeatherCard day={true} type="rain" wheatherTemp={temp} />
       <section className="cards" id="cards">
         <div className="card__heading">
-          Today is {Temp}/ You may want to wear:
+          Today is {temp}/ You may want to wear:
         </div>
         <div className="card__items">
-          {filteredcards.map((item) => {
+          {filteredcards.map((item, index) => {
+            const prependItem = filteredcards.length - 1 - index;
+            const renderItem = filteredcards[prependItem];
             return (
               <ItemCard
-                key={item.id}
-                item={item}
+                key={renderItem.id}
+                item={renderItem}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}
               />
