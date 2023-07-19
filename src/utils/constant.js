@@ -50,7 +50,7 @@ const longitude = 0.24995;
 const APIkey = "b6a1d1deb8601a340db0f9a5af50aa24";
 export { latitude, longitude, APIkey };
 
-export const wheatherOptions = [
+export const weatherOptions = [
   { url: sunnyDay, type: "sunny", day: true },
   { url: fogDay, type: "fog", day: true },
   { url: rainDay, type: "rain", day: true },

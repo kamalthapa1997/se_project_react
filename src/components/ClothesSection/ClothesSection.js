@@ -27,4 +27,4 @@ const ClothingSection = ({ clothingItems }) => {
     </div>
   );
 };
-export { ClothingSection };
+export default ClothingSection;

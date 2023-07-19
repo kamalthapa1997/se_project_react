@@ -36,4 +36,5 @@ const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
     </div>
   );
 };
+
 export default ItemModal;

@@ -9,4 +9,4 @@ const SideBar = () => {
     </div>
   );
 };
-export { SideBar };
+export default SideBar;

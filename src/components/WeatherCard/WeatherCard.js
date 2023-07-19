@@ -1,8 +1,8 @@
 import "./WeatherCard.css";
-import { wheatherOptions } from "../../utils/constant";
+import { weatherOptions } from "../../utils/constant";
 
 const WeatherCard = ({ day, type, wheatherTemp = "" }) => {
-  const weatherOption = wheatherOptions.find((item) => {
+  const weatherOption = weatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
 

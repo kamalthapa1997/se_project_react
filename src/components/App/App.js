@@ -11,11 +11,10 @@ import {
   parseWeatherData,
   parseWeatherPlace,
 } from "../../utils/weatherApi";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
-import { AddItemModal } from "../AddItemModal/AddItemModal";
-import { Profile } from "../Profile/Profile";
-import { ClothingSection } from "../ClothesSection/ClothesSection";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
