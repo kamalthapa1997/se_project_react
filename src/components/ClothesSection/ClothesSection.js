@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ClothesSection.css";
 const ClothesSection = ({ clothingItems, handleCreateModal, onSelectCard }) => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div>
       <div className="clothes">
@@ -11,19 +14,27 @@ const ClothesSection = ({ clothingItems, handleCreateModal, onSelectCard }) => {
           </p>
         </div>
         <div className="clothes__items">
-          {clothingItems.map((item) => {
-            return (
-              <div key={item.id} className="clothes__item">
-                <span className="clothes__name">{item.name}</span>
-                <img
-                  className="clothes__image"
-                  src={item.imageUrl}
-                  alt={item.name}
-                  onClick={() => onSelectCard(item)}
-                />
-              </div>
-            );
-          })}
+          {clothingItems
+            .filter((item) => {
+              console.log(
+                "from clothing items",
+                item.owner === currentUser._id
+              );
+              return item.owner === currentUser._id;
+            })
+            .map((item, index) => {
+              return (
+                <div key={item.id} className="clothes__item">
+                  <span className="clothes__name">{item.name}</span>
+                  <img
+                    className="clothes__image"
+                    src={item.imageUrl}
+                    alt={item.name}
+                    onClick={() => onSelectCard(item)}
+                  />
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

@@ -32,9 +32,10 @@ function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
   };
   const weatherType = getWeatherType();
 
-  const filteredcards = clothingItems.filter((item) => {
-    return item.weather === weatherType;
-  });
+  const filteredcards = clothingItems.filter(
+    (item) => item.weather === weatherType
+  );
+  console.log(filteredcards);
 
   return (
     <section filteredcards={clothingItems} className="Main">

@@ -3,8 +3,24 @@ import avatar from "../../images/avatar.svg";
 import logo from "../../images/Logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import Navbar from "../Navbar/Navbar";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Header = ({ location, date, handleCreateModal, modalExit }) => {
+const Header = ({
+  location,
+  date,
+  handleCreateModal,
+  modalExit,
+  handleSignUp,
+  handleSignIn,
+  currentUser,
+}) => {
+  const { loggedIn } = useContext(CurrentUserContext);
+  console.log(" logged from nav", loggedIn);
+
+  console.log("header", currentUser?.avtar);
+
   return (
     <header className="header">
       <div className=" header__section ">
@@ -20,20 +36,36 @@ const Header = ({ location, date, handleCreateModal, modalExit }) => {
 
       <div className=" header__section">
         <ToggleSwitch></ToggleSwitch>
-        <button
-          type="button"
-          className="header__btn"
-          onKeyDown={modalExit}
-          onClick={handleCreateModal}
-        >
-          + Add clothes
-        </button>
-        <Link className="header__profile-name" to="/profile">
-          Terrence Tegegne
-        </Link>
-        <div>
-          <img className="header__avatar" alt="Profile avatar" src={avatar} />
-        </div>
+
+        {loggedIn ? (
+          <Navbar
+            currentUser={currentUser}
+            handleCreateModal={handleCreateModal}
+            modalExit={modalExit}
+          />
+        ) : (
+          //// SIGN UP AND SIGH IN
+          <div>
+            <p
+              onClick={() => {
+                console.log("clicked signup");
+                handleSignUp();
+              }}
+            >
+              {" "}
+              Sign Up
+            </p>
+            <p
+              onClick={() => {
+                console.log("clicked login");
+                handleSignIn();
+              }}
+            >
+              {" "}
+              Log in
+            </p>
+          </div>
+        )}
       </div>
     </header>
   );

@@ -1,5 +1,4 @@
-const baseUrl =
-  "https://my-json-server.typicode.com/kamalthapa1997/se_project_react";
+export const baseUrl = "http://localhost:3001";
 
 export const processResponse = (res) => {
   if (res.ok) {
@@ -8,13 +7,15 @@ export const processResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
-export function getItems() {
-  return fetch(`${baseUrl}/items`).then(processResponse);
+export async function getItems() {
+  console.log(`${baseUrl}/items`);
+  const res = await fetch(`${baseUrl}/items`);
+  return processResponse(res);
 }
 
-export function postNewItems({ name, weatherType, link }) {
-  console.log(name, weatherType, link);
-  return fetch(`${baseUrl}/items`, {
+export async function postNewItems({ name, weatherType, link }) {
+  console.log("post new items", name, weatherType, link);
+  const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,11 +25,14 @@ export function postNewItems({ name, weatherType, link }) {
       weather: weatherType,
       imageUrl: link,
     }),
-  }).then(processResponse);
+  });
+  return processResponse(res);
 }
 
-export function deleteItems(id) {
-  return fetch(`${baseUrl}/items/${id}`, {
+export async function deleteItems(id) {
+  console.log(id);
+  const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-  }).then(processResponse);
+  });
+  return processResponse(res);
 }

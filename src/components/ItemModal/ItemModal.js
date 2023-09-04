@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
-  // const [deleteModal, setDeleteModal] = useState("");
-
+  const { currentUser } = useContext(CurrentUserContext);
   const handleDeleteModal = () => {
-    // setDeleteModal("delete");
-    handleDelete(selectedCard.id);
+    console.log(selectedCard);
+    handleDelete(selectedCard._id);
   };
+
+  console.log(selectedCard);
+  console.log("current user from item modal", currentUser._id);
+  console.log(currentUser._id === selectedCard.owner);
+  const isOwn = selectedCard.owner === currentUser._id;
+  const itemDeleteButtonClassName = `modal__dlt-tag ${
+    isOwn ? "modal__dlt-tag_visible" : "modal__dlt-tag_hidden"
+  }`;
 
   return (
     <div className={`modal`}>
@@ -25,7 +33,7 @@ const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
             </div>
           </div>
           <button
-            className="modal__dlt-tag"
+            className={itemDeleteButtonClassName}
             type="button"
             onClick={handleDeleteModal}
           >
