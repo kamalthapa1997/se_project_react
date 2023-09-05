@@ -26,6 +26,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -56,9 +57,10 @@ function App() {
   };
 
   const onAddItem = (value) => {
+    console.log(value);
     postNewItems(value)
       .then((newItem) => {
-        setClothingItems((preItems) => [newItem, ...preItems]);
+        setClothingItems((preItems) => [newItem.data, ...preItems]);
         handleCloseModal();
       })
       .catch((error) => {
@@ -66,7 +68,6 @@ function App() {
       });
   };
   const registerUserAccount = ({ email, password, name, avatar }) => {
-    // console.log("for register ", { email, password, name, avatar });
     try {
       auth.registerNewUser({ email, password, name, avatar });
       handleCloseModal();
@@ -114,7 +115,7 @@ function App() {
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => {
-            console.log("kaa");
+            // console.log("kaa");
             return item.id !== id;
           })
         );
@@ -180,7 +181,7 @@ function App() {
     }
   };
   ///// FOR LIKE BUTTON
-  const handleLikeClick = ({ id, isLiked, user }) => {
+  const handleLikeClick = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is now liked
     isLiked
@@ -188,25 +189,55 @@ function App() {
 
         // the first argument is the card's id
         addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
-            );
+          .then((response) => {
+            const updatedCard = response.data;
+            setClothingItems((cards) => {
+              console.log(cards);
+              // const cards = data.data;
+              return cards.map((c) => (c._id === id ? updatedCard : c));
+            });
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
 
         // the first argument is the card's id
         removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
-            );
+          .then((response) => {
+            const updatedCard = response.data;
+
+            setClothingItems((cards) => {
+              console.log(cards);
+              // const cards = data.data;
+
+              return cards.map((c) => (c._id === id ? updatedCard : c));
+            });
           })
           .catch((err) => console.log(err));
   };
 
-  /////
+  //// handle profile update
+  const userProfileUpdate = ({ name, avatar }) => {
+    console.log(name, avatar);
+    auth
+      .profileUpdate(name, avatar)
+      .then((data) => {
+        if (data) {
+          const profileInfo = data.data;
+          console.log(profileInfo);
+          setCurrentUser(profileInfo);
+        }
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Something goes wrong", err);
+      });
+  };
+
+  ///// ---- HANDLE LOG OUT ----/////
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+  };
 
   return (
     <div className="Appbody">
@@ -242,6 +273,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 updateMyProfile={updateMyProfile}
                 onLikeClick={handleLikeClick}
+                handleLogout={handleLogout}
               />
             </Route>
           </Switch>
@@ -278,6 +310,7 @@ function App() {
           {activeModal === "updateMyProfile" && (
             <UpdateProfile
               handleModalClose={handleModalClose}
+              userProfileUpdate={userProfileUpdate}
               // userSignInAccount={userSignInAccount}
             />
           )}

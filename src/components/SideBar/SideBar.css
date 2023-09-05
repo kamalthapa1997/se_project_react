@@ -6,6 +6,7 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
 }
 .sidebar__name {
   color: #000;
@@ -22,6 +23,7 @@
   color: #000;
   font-family: Cabinet Grotesk;
   font-size: 20px;
+  cursor: pointer;
 
   font-weight: 700;
   margin: 0;
@@ -30,9 +32,12 @@
   color: #000;
   font-family: Cabinet Grotesk;
   font-size: 20px;
-
+  cursor: pointer;
   font-weight: 700;
   margin: 0;
 
   padding-top: 8px;
+}
+.sidebar__logout-link {
+  text-decoration: none;
 }

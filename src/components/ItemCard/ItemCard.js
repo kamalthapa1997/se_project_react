@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
   const checkLikeStatus = () => {
-    return item.likes.some((userId) => userId === currentUser._id);
+    return item.likes.some((userId) => userId);
   };
   const [isLiked, setIsLiked] = useState(checkLikeStatus);
 
@@ -14,7 +14,6 @@ const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
     e.preventDefault();
     console.log(e.target.className);
     setIsLiked(!isLiked);
-    console.log("after clicked", isLiked);
 
     onLikeClick({ id: item._id, isLiked: !isLiked });
   };
@@ -32,21 +31,23 @@ const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
           }}
         />
       </div>
-      <div className="card__name">{item.name}</div>
-      {loggedIn ? (
-        <button
-          className={
-            item.likes.includes(currentUser._id)
-              ? "card__afterlike-btn"
-              : "card__beforelike-btn"
-          }
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        ></button>
-      ) : (
-        ""
-      )}
+      <div className="card__image-info">
+        <div className="card__name">{item.name}</div>
+        {loggedIn ? (
+          <button
+            className={
+              item.likes.includes(currentUser._id)
+                ? "card__afterlike-btn"
+                : "card__beforelike-btn"
+            }
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          ></button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

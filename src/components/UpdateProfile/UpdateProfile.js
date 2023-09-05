@@ -16,7 +16,7 @@ const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(name, avatar);
     userProfileUpdate({ name, avatar });
   };
 

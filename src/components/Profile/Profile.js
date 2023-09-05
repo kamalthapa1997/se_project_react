@@ -9,10 +9,11 @@ const Profile = ({
   onSelectCard,
   updateMyProfile,
   onLikeClick,
+  handleLogout,
 }) => {
   return (
     <div className="Profile">
-      <SideBar updateMyProfile={updateMyProfile} />
+      <SideBar updateMyProfile={updateMyProfile} handleLogout={handleLogout} />
 
       <ClothesSection
         clothingItems={clothingItems}

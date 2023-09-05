@@ -36,17 +36,6 @@ export async function userSignIn({ email, password }) {
   console.log("data ko values", data, data.token);
   // localStorage.setItem("token", data.token);
   return data;
-
-  // const userDetails = fetch(`${baseUrl}/users/me`, {
-  //   method: "GET",
-  //   headers: {
-  //     authorization: `Bearer ${data.token}`,
-  //   },
-  // });
-  // const userDetailsInfo = userDetails.json();
-  // console.log(userDetailsInfo);
-  //   }
-  // });
 }
 export async function checkTokenValidity(token) {
   const res = await fetch(`${baseUrl}/users/me`, {
@@ -69,6 +58,21 @@ export async function gettingUserItems(token) {
     },
   });
   const data = await res.json();
-  // console.log("clothing items", data);
+
   return data;
+}
+
+export async function profileUpdate(name, avatar) {
+  const res = await fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      avatar: avatar,
+    }),
+  });
+  return processResponse(res);
 }

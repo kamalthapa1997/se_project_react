@@ -7,7 +7,7 @@ const Navbar = ({ modalExit, handleCreateModal }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
 
   return (
-    <div>
+    <div className="header__info">
       <button
         type="button"
         className="header__btn"

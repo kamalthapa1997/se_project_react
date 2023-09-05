@@ -20,11 +20,14 @@
 }
 .header__avatar {
   width: 40px;
+  border-radius: 50%;
 }
 .header__profile-name {
   text-decoration: none;
   cursor: pointer;
   color: black;
+  align-items: center;
+  display: flex;
 }
 .header__btn {
   padding: 0;
@@ -61,4 +64,8 @@
   .header__avatar {
     width: 35px;
   }
+}
+.header__info {
+  display: flex;
+  gap: 10px;
 }

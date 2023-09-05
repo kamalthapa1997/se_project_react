@@ -15,11 +15,16 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.card__name {
+.card__image-info {
   position: absolute;
   top: 18px;
-  background: white;
+  gap: 10px;
+  display: flex;
+  align-items: center;
   border-radius: 2px;
+}
+.card__name {
+  background-color: #ffffff;
 }
 .card__section {
   position: relative;
@@ -33,17 +38,10 @@
   font-family: Cabinet Grotesk;
   font-weight: 700;
 }
-/* .card__like-img {
-  position: absolute;
-  top: 18px;
-  background: none;
-  left: 25px;
-} */
+
 .card__beforelike-btn {
   background: url(../../images/beforeLike.svg) no-repeat center transparent;
-  position: absolute;
-  top: 18px;
-  right: 123px;
+  cursor: pointer;
   height: 15px;
   padding: 0;
   border: 0;
@@ -51,11 +49,9 @@
 }
 .card__afterlike-btn {
   background: url(../../images/afterLike.svg) no-repeat center transparent;
-  position: absolute;
-  top: 18px;
-  right: 123px;
   height: 15px;
   padding: 0;
   border: 0;
+  cursor: pointer;
   width: 18px;
 }
