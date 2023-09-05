@@ -42,8 +42,9 @@ const Header = ({
           />
         ) : (
           //// SIGN UP AND SIGH IN
-          <div>
+          <div className="header__signin-signup">
             <p
+              className="header__signs"
               onClick={() => {
                 handleSignUp();
               }}
@@ -52,6 +53,7 @@ const Header = ({
               Sign Up
             </p>
             <p
+              className="header__signs"
               onClick={() => {
                 handleSignIn();
               }}
