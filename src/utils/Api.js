@@ -1,5 +1,4 @@
 export const baseUrl = "http://localhost:3001";
-const token = localStorage.getItem("jwt");
 
 export const processResponse = (res) => {
   if (res.ok) {
@@ -18,10 +17,11 @@ export async function getItems() {
 }
 
 export async function postNewItems({ name, weatherType, link }) {
+  const token = localStorage.getItem("jwt");
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
@@ -34,6 +34,7 @@ export async function postNewItems({ name, weatherType, link }) {
 }
 
 export async function deleteItems(id) {
+  const token = localStorage.getItem("jwt");
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {

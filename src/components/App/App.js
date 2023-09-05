@@ -60,6 +60,7 @@ function App() {
       .then((newItem) => {
         console.log(newItem.data);
         setClothingItems((preItems) => [newItem.data, ...preItems]);
+        console.log(clothingItems.length);
         handleCloseModal();
       })
       .catch((error) => {

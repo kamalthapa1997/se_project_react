@@ -29,9 +29,6 @@ export async function userSignIn({ email, password }) {
   });
 
   return processResponse(response);
-  // const data = await response.json();
-
-  // return data;
 }
 export async function checkTokenValidity(token) {
   const res = await fetch(`${baseUrl}/users/me`, {
@@ -53,9 +50,7 @@ export async function gettingUserItems(token) {
       authorization: `Bearer ${token}`,
     },
   });
-  const data = await res.json();
-
-  return data;
+  return processResponse(res);
 }
 
 export async function profileUpdate(name, avatar) {

@@ -4,20 +4,20 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
   const { currentUser } = useContext(CurrentUserContext);
-  const [name, setName] = useState("");
+  const [name, setName] = useState(currentUser.name);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(currentUser.avatar);
   const handleAvatarChange = (e) => {
     setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(name, avatar);
     userProfileUpdate({ name, avatar });
   };
 
@@ -38,7 +38,7 @@ const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
           maxLength={20}
           placeholder="Enter your name"
           onChange={handleNameChange}
-          value={currentUser.name}
+          value={name || ""}
         />
       </label>
       <label className="modal__label">
@@ -50,6 +50,7 @@ const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
           minLength={2}
           placeholder="Avatar"
           onChange={handleAvatarChange}
+          value={avatar || ""}
         />
       </label>
     </ModalWithForm>
