@@ -56,6 +56,7 @@ export async function checkTokenValidity(token) {
       authorization: `Bearer ${token}`,
     },
   });
+  console.log(res);
   return processResponse(res);
 }
 

@@ -17,9 +17,6 @@ const Header = ({
   currentUser,
 }) => {
   const { loggedIn } = useContext(CurrentUserContext);
-  console.log(" logged from nav", loggedIn);
-
-  console.log("header", currentUser?.avtar);
 
   return (
     <header className="header">
@@ -48,7 +45,6 @@ const Header = ({
           <div>
             <p
               onClick={() => {
-                console.log("clicked signup");
                 handleSignUp();
               }}
             >
@@ -57,7 +53,6 @@ const Header = ({
             </p>
             <p
               onClick={() => {
-                console.log("clicked login");
                 handleSignIn();
               }}
             >

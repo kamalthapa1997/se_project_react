@@ -4,7 +4,13 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
-import { getItems, deleteItems, postNewItems } from "../../utils/Api";
+import {
+  getItems,
+  deleteItems,
+  postNewItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/Api";
 
 import {
   getWeatheraForecast,
@@ -17,6 +23,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -49,10 +56,8 @@ function App() {
   };
 
   const onAddItem = (value) => {
-    console.log("to be posted value", value);
     postNewItems(value)
       .then((newItem) => {
-        console.log("new items", newItem);
         setClothingItems((preItems) => [newItem, ...preItems]);
         handleCloseModal();
       })
@@ -61,7 +66,7 @@ function App() {
       });
   };
   const registerUserAccount = ({ email, password, name, avatar }) => {
-    console.log("for register ", { email, password, name, avatar });
+    // console.log("for register ", { email, password, name, avatar });
     try {
       auth.registerNewUser({ email, password, name, avatar });
       handleCloseModal();
@@ -77,7 +82,7 @@ function App() {
       ///getting token
       auth.userSignIn({ email, password }).then((data) => {
         if (data) {
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("jwt", data.token);
           console.log("token from sign in", data.token);
 
           // id token valid? if yes, get info
@@ -142,6 +147,9 @@ function App() {
     setActiveModal("itemPreview");
     setSelectedCard(card);
   };
+  const updateMyProfile = () => {
+    setActiveModal("updateMyProfile");
+  };
 
   useEffect(() => {
     getWeatheraForecast()
@@ -171,6 +179,34 @@ function App() {
       return setActiveModal("");
     }
   };
+  ///// FOR LIKE BUTTON
+  const handleLikeClick = ({ id, isLiked, user }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is now liked
+    isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+
+        // the first argument is the card's id
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+
+        // the first argument is the card's id
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  /////
 
   return (
     <div className="Appbody">
@@ -195,6 +231,7 @@ function App() {
                 wheatherTemp={temperature}
                 onSelectCard={handleSelectedCard}
                 currentUser={currentUser}
+                onCardClick={handleLikeClick}
               />
             </Route>
 
@@ -203,6 +240,8 @@ function App() {
                 handleCreateModal={handleCreateModal}
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
+                updateMyProfile={updateMyProfile}
+                onLikeClick={handleLikeClick}
               />
             </Route>
           </Switch>
@@ -234,6 +273,12 @@ function App() {
             <LoginModal
               handleModalClose={handleModalClose}
               userSignInAccount={userSignInAccount}
+            />
+          )}
+          {activeModal === "updateMyProfile" && (
+            <UpdateProfile
+              handleModalClose={handleModalClose}
+              // userSignInAccount={userSignInAccount}
             />
           )}
         </CurrentUserContext.Provider>

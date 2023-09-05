@@ -1,8 +1,19 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ClothesSection.css";
-const ClothesSection = ({ clothingItems, handleCreateModal, onSelectCard }) => {
+import ItemCard from "../ItemCard/ItemCard";
+
+const ClothesSection = ({
+  clothingItems,
+  handleCreateModal,
+  onSelectCard,
+  onLikeClick,
+}) => {
   const { currentUser } = useContext(CurrentUserContext);
+
+  if (!clothingItems || !currentUser) {
+    return <div></div>;
+  }
 
   return (
     <div>
@@ -16,23 +27,40 @@ const ClothesSection = ({ clothingItems, handleCreateModal, onSelectCard }) => {
         <div className="clothes__items">
           {clothingItems
             .filter((item) => {
-              console.log(
-                "from clothing items",
-                item.owner === currentUser._id
-              );
               return item.owner === currentUser._id;
             })
             .map((item, index) => {
+              // console.log("for profile clothes", item);
               return (
-                <div key={item.id} className="clothes__item">
-                  <span className="clothes__name">{item.name}</span>
-                  <img
-                    className="clothes__image"
-                    src={item.imageUrl}
-                    alt={item.name}
-                    onClick={() => onSelectCard(item)}
-                  />
-                </div>
+                <ItemCard
+                  item={item}
+                  // item={renderItem}
+                  onSelectCard={onSelectCard}
+                  // closeModal={closeModal}
+                  // modalExit={modalExit}
+                  onLikeClick={onLikeClick}
+                />
+
+                // <div key={item.id} className="clothes__item">
+                //   <div>
+                //     <span className="clothes__name">{item.name}</span>
+                //   </div>
+                //   <img
+                //     className="clothes__image"
+                //     src={item.imageUrl}
+                //     alt={item.name}
+                //     onClick={() => onSelectCard(item)}
+                //   />
+                //   <button
+                //     className={
+                //       item.likes.includes(currentUser._id)
+                //         ? "card__afterlike-btn"
+                //         : "card__beforelike-btn"
+                //     }
+                //     src={beforeLikeBtn}
+                //     onClick={onLikeClick}
+                //   ></button>
+                // </div>
               );
             })}
         </div>

@@ -14,3 +14,25 @@
   margin: 0;
   font-weight: 700;
 }
+
+.sidebar-userupdate {
+  margin-top: 24px;
+}
+.sidebar-userupdate__profile {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+
+  font-weight: 700;
+  margin: 0;
+}
+.siderbar_userupdate__logout {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+
+  font-weight: 700;
+  margin: 0;
+
+  padding-top: 8px;
+}

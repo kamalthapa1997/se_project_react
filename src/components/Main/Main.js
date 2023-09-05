@@ -7,7 +7,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constant";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
+function Main({
+  modalExit,
+  wheatherTemp,
+  onSelectCard,
+  clothingItems,
+  onCardClick,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = wheatherTemp?.temperature?.[currentTemperatureUnit];
 
@@ -38,7 +44,11 @@ function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
   console.log(filteredcards);
 
   return (
-    <section filteredcards={clothingItems} className="Main">
+    <section
+      filteredcards={clothingItems}
+      onCardClick={onCardClick}
+      className="Main"
+    >
       <WeatherCard day={true} type="rain" wheatherTemp={temp} />
       <section className="cards" id="cards">
         <div className="card__heading">
@@ -54,6 +64,7 @@ function Main({ modalExit, wheatherTemp, onSelectCard, clothingItems }) {
                 item={renderItem}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}
+                onLikeClick={onCardClick}
               />
             );
           })}
