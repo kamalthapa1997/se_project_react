@@ -39,7 +39,7 @@ function App() {
   const [userLocation, setUserLocation] = useState("");
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-
+  const [token] = useState(localStorage.getItem("jwt"));
   const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -58,6 +58,7 @@ function App() {
   const onAddItem = (value) => {
     postNewItems(value)
       .then((newItem) => {
+        console.log(newItem.data);
         setClothingItems((preItems) => [newItem.data, ...preItems]);
         handleCloseModal();
       })
@@ -224,6 +225,25 @@ function App() {
     setLoggedIn(false);
   };
 
+  //useEffect
+  //Check if token is in localStoreage
+  //if token is present, then call auth.checkTokenValidity and then call user sign  in
+
+  useEffect(() => {
+    if (token) {
+      auth
+        .checkTokenValidity(token)
+        .then((res) => {
+          const data = res.data;
+          setLoggedIn(true);
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [token]);
+
   return (
     <div className="Appbody">
       <CurrentTemperatureUnitContext.Provider
@@ -247,7 +267,7 @@ function App() {
                 wheatherTemp={temperature}
                 onSelectCard={handleSelectedCard}
                 currentUser={currentUser}
-                onCardClick={handleLikeClick}
+                handlelikeclick={handleLikeClick}
               />
             </Route>
 
@@ -257,7 +277,7 @@ function App() {
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 updateMyProfile={updateMyProfile}
-                onLikeClick={handleLikeClick}
+                handlelikeclick={handleLikeClick}
                 handleLogout={handleLogout}
               />
             </Route>

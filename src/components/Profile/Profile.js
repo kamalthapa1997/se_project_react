@@ -8,7 +8,7 @@ const Profile = ({
   handleCreateModal,
   onSelectCard,
   updateMyProfile,
-  onLikeClick,
+  handlelikeclick,
   handleLogout,
 }) => {
   return (
@@ -19,7 +19,7 @@ const Profile = ({
         clothingItems={clothingItems}
         handleCreateModal={handleCreateModal}
         onSelectCard={onSelectCard}
-        onLikeClick={onLikeClick}
+        handlelikeclick={handlelikeclick}
       />
     </div>
   );

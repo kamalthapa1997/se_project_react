@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
-  //   const [name, setEmail] = useState("");
+  const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
 
   const handleNameChange = (e) => {
@@ -31,24 +32,23 @@ const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
         Name*
         <input
           className="modal__input"
-          type="text>"
+          type="text"
           name="name"
           minLength={2}
           maxLength={20}
           placeholder="Enter your name"
-          value={name}
           onChange={handleNameChange}
+          value={currentUser.name}
         />
       </label>
       <label className="modal__label">
         Avatar
         <input
           className="modal__input"
-          type="url>"
+          type="url"
           name="avatar"
           minLength={2}
           placeholder="Avatar"
-          value={avatar}
           onChange={handleAvatarChange}
         />
       </label>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
@@ -23,7 +23,11 @@ const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
           className="modal__close"
           onClick={handleModalClose}
         />
-        <img className="modal__image" src={selectedCard.imageUrl} />
+        <img
+          className="modal__image"
+          src={selectedCard.imageUrl}
+          alt={selectedCard.name}
+        />
         <div className="modal__details">
           <div className="modal__caption">
             <div className="modal__image-caption">{selectedCard.name}</div>

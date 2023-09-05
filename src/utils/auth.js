@@ -1,10 +1,6 @@
-import React, { useContext } from "react";
 import { baseUrl, processResponse } from "./Api";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-// const [setLoggedIn] = useContext(CurrentUserContext);
-export async function registerNewUser({ email, password, name, avatar }) {
-  //   const { setLoggedIn } = useContext(CurrentUserContext);
 
+export async function registerNewUser({ email, password, name, avatar }) {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {

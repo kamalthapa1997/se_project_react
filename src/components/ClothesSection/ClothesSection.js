@@ -7,7 +7,7 @@ const ClothesSection = ({
   clothingItems,
   handleCreateModal,
   onSelectCard,
-  onLikeClick,
+  handlelikeclick,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -35,7 +35,7 @@ const ClothesSection = ({
                   key={item._id}
                   item={item}
                   onSelectCard={onSelectCard}
-                  onLikeClick={onLikeClick}
+                  handlelikeclick={handlelikeclick}
                 />
               );
             })}

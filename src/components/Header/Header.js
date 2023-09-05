@@ -1,9 +1,9 @@
 import "./Header.css";
-import avatar from "../../images/avatar.svg";
+
 import logo from "../../images/Logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 

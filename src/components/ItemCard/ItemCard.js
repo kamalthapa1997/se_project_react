@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./ItemCard.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
+const ItemCard = ({ item, onSelectCard, closeModal, handlelikeclick }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
   const checkLikeStatus = () => {
     return item.likes.some((userId) => userId);
@@ -15,7 +15,7 @@ const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
 
     setIsLiked(!isLiked);
 
-    onLikeClick({ id: item._id, isLiked: !isLiked });
+    handlelikeclick({ id: item._id, isLiked: !isLiked });
   };
 
   return (

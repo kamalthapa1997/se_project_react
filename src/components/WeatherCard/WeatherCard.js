@@ -25,7 +25,11 @@ const WeatherCard = ({ day, type, wheatherTemp = "" }) => {
       <p className="Weather__update">
         {wheatherTemp} {handleToggleSwitchChange()}
       </p>
-      <img className="Weather__updatebg" src={weatherImageSrcUrl} />
+      <img
+        className="Weather__updatebg"
+        src={weatherImageSrcUrl}
+        alt="weather"
+      />
     </section>
   );
 };

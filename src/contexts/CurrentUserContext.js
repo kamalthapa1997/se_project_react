@@ -23,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
     } else {
       localStorage.removeItem("currentUser");
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
