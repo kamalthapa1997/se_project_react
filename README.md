@@ -12,6 +12,7 @@ You can access the live projecr here : [https://kamalthapa1997.github.io/se_proj
 ### Functionality
 
 The application makes an API call to retrieve the daily weather forecast. The weather data is then processed and analyzed to determine the appropriate clothing recommendations for the user. The recommendations take into account factors such as temperature, humidity, wind speed, and precipitation.
+--> link to my BackEnd Repo [here](https://github.com/kamalthapa1997/se_project_express.git)
 
 ## Features
 
