@@ -29,6 +29,12 @@ User-friendly interface for easy navigation
 - Figma for design
 - Usage
 
+## BackEnd
+
+- Node JS
+- MongoDB
+- Express JS
+
 ## Open the WTWR application.
 
 Allow the application to access your location or manually enter your location.

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./ModalWithForm.css";
 const ModalWithForm = ({
   name,
@@ -5,8 +6,9 @@ const ModalWithForm = ({
   title,
   buttonText,
   handleModalClose,
-  isOpen,
+  linkToRegOrLogin,
   onSubmit,
+  handleRegLog,
 }) => {
   return (
     <div className={`modal modal__tupe_${name}`}>
@@ -19,7 +21,16 @@ const ModalWithForm = ({
         <h3 className="modal__title">{title}</h3>
         <form onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit">{buttonText}</button>
+          <div className="modal__submit-buttons">
+            <button className="modal__submit">{buttonText}</button>
+
+            <p
+              className="modal__btn-to-register-or-login"
+              onClick={handleRegLog}
+            >
+              {linkToRegOrLogin}
+            </p>
+          </div>
         </form>
       </div>
     </div>

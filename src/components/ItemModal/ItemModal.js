@@ -3,15 +3,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
   const { currentUser } = useContext(CurrentUserContext);
+
   const handleDeleteModal = () => {
-    console.log(selectedCard);
     handleDelete(selectedCard._id);
   };
 
-  console.log(selectedCard);
-  console.log("current user from item modal", currentUser._id);
-  console.log(currentUser._id === selectedCard.owner);
-  const isOwn = selectedCard.owner === currentUser._id;
+  const isOwn =
+    selectedCard.owner === (currentUser._id || currentUser._id == null);
+
   const itemDeleteButtonClassName = `modal__dlt-tag ${
     isOwn ? "modal__dlt-tag_visible" : "modal__dlt-tag_hidden"
   }`;

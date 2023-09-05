@@ -32,6 +32,7 @@ const RegisterModal = ({ handleModalClose, registerUserAccount }) => {
       title="Log in"
       buttonText="Login"
       onSubmit={handleSubmit}
+      linkToRegOrLogin="or Log in"
     >
       <label className="modal__label">
         Email

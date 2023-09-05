@@ -11,7 +11,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
-    console.log("user fetched", savedUser);
+
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }
@@ -19,7 +19,6 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     if (currentUser) {
-      console.log(currentUser);
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
     } else {
       localStorage.removeItem("currentUser");

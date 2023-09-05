@@ -30,37 +30,13 @@ const ClothesSection = ({
               return item.owner === currentUser._id;
             })
             .map((item, index) => {
-              // console.log("for profile clothes", item);
               return (
                 <ItemCard
+                  key={item._id}
                   item={item}
-                  // item={renderItem}
                   onSelectCard={onSelectCard}
-                  // closeModal={closeModal}
-                  // modalExit={modalExit}
                   onLikeClick={onLikeClick}
                 />
-
-                // <div key={item.id} className="clothes__item">
-                //   <div>
-                //     <span className="clothes__name">{item.name}</span>
-                //   </div>
-                //   <img
-                //     className="clothes__image"
-                //     src={item.imageUrl}
-                //     alt={item.name}
-                //     onClick={() => onSelectCard(item)}
-                //   />
-                //   <button
-                //     className={
-                //       item.likes.includes(currentUser._id)
-                //         ? "card__afterlike-btn"
-                //         : "card__beforelike-btn"
-                //     }
-                //     src={beforeLikeBtn}
-                //     onClick={onLikeClick}
-                //   ></button>
-                // </div>
               );
             })}
         </div>

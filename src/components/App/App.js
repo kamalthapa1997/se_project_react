@@ -26,7 +26,6 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -40,8 +39,8 @@ function App() {
   const [userLocation, setUserLocation] = useState("");
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  // const [token, setToken] = useState(localStorage.getItem("token"));
-  const [currentUser, setCurrentUser] = useState(null);
+
+  const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -57,7 +56,6 @@ function App() {
   };
 
   const onAddItem = (value) => {
-    console.log(value);
     postNewItems(value)
       .then((newItem) => {
         setClothingItems((preItems) => [newItem.data, ...preItems]);
@@ -78,25 +76,21 @@ function App() {
 
   //// ----- SIGH IN ------///////
   const userSignInAccount = ({ email, password }) => {
-    console.log("for Log in", email, password);
     try {
       ///getting token
       auth.userSignIn({ email, password }).then((data) => {
         if (data) {
           localStorage.setItem("jwt", data.token);
-          console.log("token from sign in", data.token);
 
           // id token valid? if yes, get info
           auth.checkTokenValidity(data.token).then((data) => {
             const userInfo = data.data;
-            console.log(userInfo.name, userInfo.avatar, userInfo);
-            // debugger;
+
             setCurrentUser(userInfo);
             setLoggedIn(true);
 
             // getting user clothing items
             auth.gettingUserItems(data.token).then((items) => {
-              console.log(items.data);
               setClothingItems(items.data);
             });
           });
@@ -107,18 +101,15 @@ function App() {
       console.error(error);
     }
   };
-  /// lool
 
   const handleDelete = (id) => {
-    console.log("to be deleted id", id);
     deleteItems(id)
       .then(() => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => {
-            // console.log("kaa");
-            return item.id !== id;
-          })
-        );
+        setClothingItems((prevItems) => {
+          return prevItems.filter((item) => {
+            return item._id !== id;
+          });
+        });
         handleCloseModal();
       })
       .catch((error) =>
@@ -192,8 +183,6 @@ function App() {
           .then((response) => {
             const updatedCard = response.data;
             setClothingItems((cards) => {
-              console.log(cards);
-              // const cards = data.data;
               return cards.map((c) => (c._id === id ? updatedCard : c));
             });
           })
@@ -206,9 +195,6 @@ function App() {
             const updatedCard = response.data;
 
             setClothingItems((cards) => {
-              console.log(cards);
-              // const cards = data.data;
-
               return cards.map((c) => (c._id === id ? updatedCard : c));
             });
           })
@@ -217,13 +203,12 @@ function App() {
 
   //// handle profile update
   const userProfileUpdate = ({ name, avatar }) => {
-    console.log(name, avatar);
     auth
       .profileUpdate(name, avatar)
       .then((data) => {
         if (data) {
           const profileInfo = data.data;
-          console.log(profileInfo);
+
           setCurrentUser(profileInfo);
         }
         handleCloseModal();
@@ -288,7 +273,6 @@ function App() {
           {activeModal === "itemPreview" && (
             <ItemModal
               handleDelete={() => {
-                console.log(selectedCard._id);
                 return handleDelete(selectedCard._id);
               }}
               selectedCard={selectedCard}

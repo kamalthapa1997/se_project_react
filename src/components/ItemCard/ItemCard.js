@@ -12,7 +12,7 @@ const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e.target.className);
+
     setIsLiked(!isLiked);
 
     onLikeClick({ id: item._id, isLiked: !isLiked });
@@ -22,6 +22,7 @@ const ItemCard = ({ item, onSelectCard, closeModal, onLikeClick }) => {
     <div className="card__section">
       <div>
         <img
+          key={item._id}
           className="card__image"
           src={item.imageUrl}
           alt={item.name}

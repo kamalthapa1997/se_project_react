@@ -44,7 +44,6 @@ function Main({
     }
     return;
   });
-  console.log(filteredcards);
 
   return (
     <section
@@ -63,7 +62,7 @@ function Main({
             const renderItem = filteredcards[prependItem];
             return (
               <ItemCard
-                key={renderItem.id}
+                key={item._id}
                 item={renderItem}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}

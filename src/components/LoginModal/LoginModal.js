@@ -25,6 +25,7 @@ const LoginModal = ({ handleModalClose, userSignInAccount }) => {
       title="Log in"
       buttonText="Next"
       onSubmit={handleSubmit}
+      linkToRegOrLogin="or Register"
     >
       <label className="modal__label">
         Email
@@ -43,7 +44,7 @@ const LoginModal = ({ handleModalClose, userSignInAccount }) => {
         Password
         <input
           className="modal__input"
-          type="password>"
+          type="password"
           name="password"
           minLength={2}
           placeholder="password"

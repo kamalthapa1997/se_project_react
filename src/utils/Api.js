@@ -9,7 +9,6 @@ export const processResponse = (res) => {
 };
 
 export async function getItems() {
-  // console.log(`${baseUrl}/items`);
   const res = await fetch(`${baseUrl}/items`, {
     headers: {
       "content-type": "application/json",
@@ -19,7 +18,6 @@ export async function getItems() {
 }
 
 export async function postNewItems({ name, weatherType, link }) {
-  // console.log("post new items", name, weatherType, link);
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -36,7 +34,6 @@ export async function postNewItems({ name, weatherType, link }) {
 }
 
 export async function deleteItems(id) {
-  // console.log(id);
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
@@ -47,8 +44,6 @@ export async function deleteItems(id) {
 }
 
 export async function addCardLike(id) {
-  // console.log("remove card like", token);
-
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
@@ -56,11 +51,10 @@ export async function addCardLike(id) {
       authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   });
-  console.log(res.ok);
+
   return processResponse(res);
 }
 export async function removeCardLike(id) {
-  console.log("add card like", localStorage.getItem("jwt"));
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
@@ -68,7 +62,6 @@ export async function removeCardLike(id) {
       authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   });
-  console.log(res.ok);
 
   return processResponse(res);
 }

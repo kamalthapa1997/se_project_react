@@ -32,10 +32,10 @@ export async function userSignIn({ email, password }) {
     }),
   });
 
-  const data = await response.json();
-  console.log("data ko values", data, data.token);
-  // localStorage.setItem("token", data.token);
-  return data;
+  return processResponse(response);
+  // const data = await response.json();
+
+  // return data;
 }
 export async function checkTokenValidity(token) {
   const res = await fetch(`${baseUrl}/users/me`, {
@@ -45,7 +45,7 @@ export async function checkTokenValidity(token) {
       authorization: `Bearer ${token}`,
     },
   });
-  console.log(res);
+
   return processResponse(res);
 }
 
