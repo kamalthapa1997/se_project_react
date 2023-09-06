@@ -3,17 +3,12 @@ import avatar from "../../images/avatar.svg";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Navbar = ({ modalExit, handleCreateModal }) => {
+const Navbar = ({ handleCreateModal }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
 
   return (
     <div className="header__info">
-      <button
-        type="button"
-        className="header__btn"
-        onKeyDown={modalExit}
-        onClick={handleCreateModal}
-      >
+      <button type="button" className="header__btn" onClick={handleCreateModal}>
         + Add clothes
       </button>
       <Link className="header__profile-name" to="/profile">

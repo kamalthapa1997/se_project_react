@@ -38,7 +38,6 @@ const Header = ({
           <Navbar
             currentUser={currentUser}
             handleCreateModal={handleCreateModal}
-            modalExit={modalExit}
           />
         ) : (
           //// SIGN UP AND SIGH IN

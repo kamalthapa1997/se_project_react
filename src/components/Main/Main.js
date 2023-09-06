@@ -6,13 +6,7 @@ import ItemCard from "../ItemCard/ItemCard";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({
-  modalExit,
-  wheatherTemp,
-  onSelectCard,
-  clothingItems,
-  handlelikeclick,
-}) {
+function Main({ wheatherTemp, onSelectCard, clothingItems, handlelikeclick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = wheatherTemp?.temperature?.[currentTemperatureUnit];
 
@@ -60,7 +54,6 @@ function Main({
                 key={item._id}
                 item={item}
                 onSelectCard={onSelectCard}
-                modalExit={modalExit}
                 handlelikeclick={handlelikeclick}
               />
             );
