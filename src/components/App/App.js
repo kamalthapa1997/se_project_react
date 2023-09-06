@@ -123,9 +123,14 @@ function App() {
     if (token) {
       handleTokenCheck(token).finally(() => {
         setLoggedIn(true);
-        auth.gettingUserItems(token).then((items) => {
-          settingClothingItems(items);
-        });
+        auth
+          .gettingUserItems(token)
+          .then((items) => {
+            settingClothingItems(items);
+          })
+          .catch((error) => {
+            console.error(`Error: ${error.status}`);
+          });
       });
     } else {
       setLoggedIn(false);

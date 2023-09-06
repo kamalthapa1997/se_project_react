@@ -4,7 +4,11 @@ import { latitude, longitude, APIkey } from "./constant";
 export const getWeatheraForecast = () => {
   const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then(processResponse);
+  )
+    .then(processResponse)
+    .catch((error) => {
+      console.error(`Error: ${error.status}`);
+    });
 
   return weatherApi;
 };
