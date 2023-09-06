@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
+const UpdateProfile = ({ handleCloseModal, userProfileUpdate }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
 
@@ -23,7 +23,7 @@ const UpdateProfile = ({ handleModalClose, userProfileUpdate }) => {
 
   return (
     <ModalWithForm
-      handleModalClose={handleModalClose}
+      handleCloseModal={handleCloseModal}
       title="Change profile data"
       buttonText="Save changes"
       onSubmit={handleSubmit}

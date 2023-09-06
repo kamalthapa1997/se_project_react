@@ -26,6 +26,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -43,6 +44,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const history = useHistory();
 
   const currentUserContextValue = {
     currentUser,
@@ -51,16 +53,12 @@ function App() {
     setLoggedIn,
   };
 
-  const handleCloseModal = () => {
-    setActiveModal("");
-  };
-
   const onAddItem = (value) => {
     postNewItems(value)
       .then((newItem) => {
         console.log(newItem.data);
         setClothingItems((preItems) => [newItem.data, ...preItems]);
-        console.log(clothingItems.length);
+        console.log(clothingItems);
         handleCloseModal();
       })
       .catch((error) => {
@@ -76,33 +74,63 @@ function App() {
     }
   };
 
+  function handleTokenCheck(token) {
+    if (token) {
+      return auth
+        .checkTokenValidity(token)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
   //// ----- SIGH IN ------///////
   const userSignInAccount = ({ email, password }) => {
     try {
       ///getting token
       auth.userSignIn({ email, password }).then((data) => {
-        if (data) {
+        if (data.token) {
           localStorage.setItem("jwt", data.token);
 
           // id token valid? if yes, get info
-          auth.checkTokenValidity(data.token).then((data) => {
-            const userInfo = data.data;
+          // auth.checkTokenValidity(data.token);
+          handleTokenCheck(data.token);
+          // history.push("/profile");
 
-            setCurrentUser(userInfo);
-            setLoggedIn(true);
+          // // getting user clothing items
 
-            // getting user clothing items
-            auth.gettingUserItems(data.token).then((items) => {
-              setClothingItems(items.data);
-            });
-          });
+          // });
         }
       });
+
       handleCloseModal();
     } catch (error) {
       console.error(error);
     }
   };
+
+  function settingClothingItems(items) {
+    const reverseItems = items.data.reverse();
+
+    setClothingItems(reverseItems);
+  }
+
+  useEffect(() => {
+    if (token) {
+      handleTokenCheck(token).finally(() => {
+        setLoggedIn(true);
+        auth.gettingUserItems(token).then((items) => {
+          settingClothingItems(items);
+        });
+      });
+    } else {
+      setLoggedIn(false);
+    }
+  }, [token]);
 
   const handleDelete = (id) => {
     deleteItems(id)
@@ -128,7 +156,7 @@ function App() {
   const handleCreateModal = () => {
     setActiveModal("createModal");
   };
-  const handleModalClose = () => {
+  const handleCloseModal = () => {
     setActiveModal("");
   };
   const handleSignUp = () => {
@@ -161,7 +189,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((items) => {
-        setClothingItems(items.data);
+        settingClothingItems(items);
       })
       .catch((error) => {
         console.error(`Error: ${error.status}`);
@@ -170,7 +198,7 @@ function App() {
 
   const modalExit = (evt) => {
     if (evt.key === "Escape" && activeModal !== "") {
-      return setActiveModal("");
+      handleCloseModal();
     }
   };
   ///// FOR LIKE BUTTON
@@ -226,25 +254,6 @@ function App() {
     setLoggedIn(false);
   };
 
-  //useEffect
-  //Check if token is in localStoreage
-  //if token is present, then call auth.checkTokenValidity and then call user sign  in
-
-  useEffect(() => {
-    if (token) {
-      auth
-        .checkTokenValidity(token)
-        .then((res) => {
-          const data = res.data;
-          setLoggedIn(true);
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [token]);
-
   return (
     <div className="Appbody">
       <CurrentTemperatureUnitContext.Provider
@@ -286,7 +295,7 @@ function App() {
           <Footer />
           {activeModal === "createModal" && (
             <AddItemModal
-              handleModalClose={handleModalClose}
+              handleCloseModal={handleCloseModal}
               isOpen={activeModal === "createModal"}
               onAddItem={onAddItem}
             />
@@ -297,24 +306,24 @@ function App() {
                 return handleDelete(selectedCard._id);
               }}
               selectedCard={selectedCard}
-              handleModalClose={handleModalClose}
+              handleCloseModal={handleCloseModal}
             />
           )}
           {activeModal === "signUpModal" && (
             <RegisterModal
-              handleModalClose={handleModalClose}
+              handleCloseModal={handleCloseModal}
               registerUserAccount={registerUserAccount}
             />
           )}
           {activeModal === "signInModal" && (
             <LoginModal
-              handleModalClose={handleModalClose}
+              handleCloseModal={handleCloseModal}
               userSignInAccount={userSignInAccount}
             />
           )}
           {activeModal === "updateMyProfile" && (
             <UpdateProfile
-              handleModalClose={handleModalClose}
+              handleCloseModal={handleCloseModal}
               userProfileUpdate={userProfileUpdate}
               // userSignInAccount={userSignInAccount}
             />

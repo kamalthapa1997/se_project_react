@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
+const ItemModal = ({ selectedCard, handleCloseModal, handleDelete }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   const handleDeleteModal = () => {
@@ -21,7 +21,7 @@ const ItemModal = ({ selectedCard, handleModalClose, handleDelete }) => {
         <button
           type="button"
           className="modal__close"
-          onClick={handleModalClose}
+          onClick={handleCloseModal}
         />
         <img
           className="modal__image"

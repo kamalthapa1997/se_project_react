@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ handleModalClose, registerUserAccount }) => {
+const RegisterModal = ({ handleCloseModal, registerUserAccount }) => {
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
@@ -28,7 +28,7 @@ const RegisterModal = ({ handleModalClose, registerUserAccount }) => {
 
   return (
     <ModalWithForm
-      handleModalClose={handleModalClose}
+      handleCloseModal={handleCloseModal}
       title="Log in"
       buttonText="Login"
       onSubmit={handleSubmit}

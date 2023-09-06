@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ handleModalClose, isOpen, onAddItem }) => {
+const AddItemModal = ({ handleCloseModal, isOpen, onAddItem }) => {
   const [name, setName] = useState("");
 
   const handleNameChange = (e) => {
@@ -26,7 +26,7 @@ const AddItemModal = ({ handleModalClose, isOpen, onAddItem }) => {
 
   return (
     <ModalWithForm
-      handleModalClose={handleModalClose}
+      handleCloseModal={handleCloseModal}
       title="New Garment"
       buttonText="New garment"
       onSubmit={handleSubmit}

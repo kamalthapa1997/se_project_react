@@ -4,7 +4,7 @@ const ModalWithForm = ({
   children,
   title,
   buttonText,
-  handleModalClose,
+  handleCloseModal,
   linkToRegOrLogin,
   onSubmit,
   handleRegLog,
@@ -14,7 +14,7 @@ const ModalWithForm = ({
       <div className="modal__container">
         <button
           type="button"
-          onClick={handleModalClose}
+          onClick={handleCloseModal}
           className="modal__close"
         />
         <h3 className="modal__title">{title}</h3>

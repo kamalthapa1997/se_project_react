@@ -45,7 +45,7 @@ function Main({
   });
 
   return (
-    <section filteredcards={clothingItems} className="Main">
+    <main filteredcards={clothingItems} className="Main">
       <WeatherCard day={true} type="rain" wheatherTemp={temp} />
       <section className="cards" id="cards">
         <div className="card__heading">
@@ -53,12 +53,12 @@ function Main({
         </div>
         <div className="card__items">
           {filteredcards.map((item, index) => {
-            const prependItem = filteredcards.length - 1 - index;
-            const renderItem = filteredcards[prependItem];
+            // const prependItem = filteredcards.length - 1 - index;
+            // const renderItem = filteredcards[prependItem];
             return (
               <ItemCard
                 key={item._id}
-                item={renderItem}
+                item={item}
                 onSelectCard={onSelectCard}
                 modalExit={modalExit}
                 handlelikeclick={handlelikeclick}
@@ -67,7 +67,7 @@ function Main({
           })}
         </div>
       </section>
-    </section>
+    </main>
   );
 }
 export default Main;

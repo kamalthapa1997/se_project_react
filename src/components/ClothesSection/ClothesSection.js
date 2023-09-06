@@ -16,30 +16,28 @@ const ClothesSection = ({
   }
 
   return (
-    <div>
-      <div className="clothes">
-        <div className=" clothes__captions">
-          <p className="clothes__caption">Your Items</p>
-          <p className="clothes__caption" onClick={handleCreateModal}>
-            + Add new
-          </p>
-        </div>
-        <div className="clothes__items">
-          {clothingItems
-            .filter((item) => {
-              return item.owner === currentUser._id;
-            })
-            .map((item, index) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onSelectCard={onSelectCard}
-                  handlelikeclick={handlelikeclick}
-                />
-              );
-            })}
-        </div>
+    <div className="clothes">
+      <div className=" clothes__captions">
+        <p className="clothes__caption">Your Items</p>
+        <p className="clothes__caption" onClick={handleCreateModal}>
+          + Add new
+        </p>
+      </div>
+      <div className="clothes__items">
+        {clothingItems
+          .filter((item) => {
+            return item.owner === currentUser._id;
+          })
+          .map((item, index) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onSelectCard={onSelectCard}
+                handlelikeclick={handlelikeclick}
+              />
+            );
+          })}
       </div>
     </div>
   );
