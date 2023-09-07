@@ -218,18 +218,20 @@ function App() {
   }, [activeModal]); // watch activeModal here
 
   ///// FOR LIKE BUTTON
-  const handleLikeClick = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
-    isLiked
-      ? addCardLike(id, token)
+  const handleLikeClick = (id, isLiked) => {
+    // const token = localStorage.getItem("jwt");
+    !isLiked
+      ? addCardLike(id, currentUser._id)
           .then((response) => {
+            // console.log(response);
             const updatedCard = response.data;
             setClothingItems((cards) => {
+              // console.log(cards);
               return cards.map((c) => (c._id === id ? updatedCard : c));
             });
           })
           .catch((err) => console.log(err))
-      : removeCardLike(id, token)
+      : removeCardLike(id, currentUser._id)
           .then((response) => {
             const updatedCard = response.data;
 

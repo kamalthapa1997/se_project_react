@@ -11,18 +11,20 @@ export async function getItems() {
   const res = await fetch(`${baseUrl}/items`, {
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${getToken("jwt")}`,
     },
   });
+  console.log(res);
   return processResponse(res);
 }
 
 export async function postNewItems({ name, weatherType, link }) {
-  const token = localStorage.getItem("jwt");
+  // const token = localStorage.getItem("jwt");
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${getToken("jwt")}`,
     },
     body: JSON.stringify({
       name: name,
@@ -49,19 +51,36 @@ export async function addCardLike(id) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${getToken("jwt")}`,
     },
+    body: JSON.stringify({
+      id,
+    }),
   });
 
   return processResponse(res);
 }
+
+const getToken = (token) => {
+  if (token) {
+    const currentToken = localStorage.getItem(token);
+    return currentToken;
+  } else {
+    console.error("No token in storage");
+    return null;
+  }
+};
+
 export async function removeCardLike(id) {
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${getToken("jwt")}`,
     },
+    body: JSON.stringify({
+      id,
+    }),
   });
 
   return processResponse(res);
