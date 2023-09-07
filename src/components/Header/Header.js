@@ -11,7 +11,7 @@ const Header = ({
   location,
   date,
   handleCreateModal,
-  modalExit,
+
   handleSignUp,
   handleSignIn,
   currentUser,

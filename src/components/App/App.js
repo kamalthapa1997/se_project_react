@@ -26,7 +26,6 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -44,7 +43,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const history = useHistory();
 
   const currentUserContextValue = {
     currentUser,
@@ -222,12 +220,8 @@ function App() {
   ///// FOR LIKE BUTTON
   const handleLikeClick = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    // Check if this card is now liked
     isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-
-        // the first argument is the card's id
-        addCardLike(id, token)
+      ? addCardLike(id, token)
           .then((response) => {
             const updatedCard = response.data;
             setClothingItems((cards) => {
@@ -235,10 +229,7 @@ function App() {
             });
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-
-        // the first argument is the card's id
-        removeCardLike(id, token)
+      : removeCardLike(id, token)
           .then((response) => {
             const updatedCard = response.data;
 
@@ -249,7 +240,6 @@ function App() {
           .catch((err) => console.log(err));
   };
 
-  //// handle profile update
   const userProfileUpdate = ({ name, avatar }) => {
     auth
       .profileUpdate(name, avatar)

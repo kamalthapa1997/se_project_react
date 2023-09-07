@@ -11,8 +11,14 @@ const ItemCard = ({ item, onSelectCard, closeModal, handlelikeclick }) => {
   const [isLiked, setIsLiked] = useState(checkLikeStatus);
 
   const handleClick = () => {
-    handlelikeclick({ id: item._id, isLiked: !isLiked });
-    setIsLiked(!isLiked);
+    try {
+      handlelikeclick({ id: item._id, isLiked: !isLiked });
+      setIsLiked(!isLiked);
+      // console.log(isLiked);
+    } catch (error) {
+      // console.log("from err", isLiked);
+      console.log(error);
+    }
   };
 
   return (
