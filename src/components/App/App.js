@@ -18,7 +18,7 @@ import {
   parseWeatherPlace,
 } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -26,7 +26,8 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom";
+
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -44,7 +45,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const history = useHistory();
 
   const currentUserContextValue = {
     currentUser,
@@ -83,7 +83,6 @@ function App() {
           setCurrentUser(res.data);
         })
         .catch((err) => {
-          history.push("/");
           setLoggedIn(false);
           console.error(err);
         });
@@ -194,8 +193,7 @@ function App() {
         settingClothingItems(items);
       })
       .catch((error) => {
-        setLoggedIn(false);
-        console.error(`Failed to get items.`);
+        console.error(`Failed to get items.`, error);
       });
   }, []);
 
@@ -289,7 +287,7 @@ function App() {
               />
             </Route>
 
-            <Route path="/profile">
+            <ProtectedRoute path="/profile">
               <Profile
                 handleCreateModal={handleCreateModal}
                 clothingItems={clothingItems}
@@ -298,7 +296,7 @@ function App() {
                 handlelikeclick={handleLikeClick}
                 handleLogout={handleLogout}
               />
-            </Route>
+            </ProtectedRoute>
           </Switch>
           <Footer />
           {activeModal === "createModal" && (
