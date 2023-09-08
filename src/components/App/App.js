@@ -83,10 +83,9 @@ function App() {
           setCurrentUser(res.data);
         })
         .catch((err) => {
-          console.error(err);
           history.push("/");
           setLoggedIn(false);
-          localStorage.removeItem("jwt");
+          console.error(err);
         });
     } else {
       setLoggedIn(false);
@@ -101,14 +100,7 @@ function App() {
         if (data.token) {
           localStorage.setItem("jwt", data.token);
 
-          // id token valid? if yes, get info
-          // auth.checkTokenValidity(data.token);
           handleTokenCheck(data.token);
-          // history.push("/profile");
-
-          // // getting user clothing items
-
-          // });
         }
       });
 
@@ -202,8 +194,8 @@ function App() {
         settingClothingItems(items);
       })
       .catch((error) => {
-        console.error(`Error: ${error.status}`);
         setLoggedIn(false);
+        console.error(`Failed to get items.`);
       });
   }, []);
 
