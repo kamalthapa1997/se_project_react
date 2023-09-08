@@ -26,6 +26,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -43,6 +44,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const history = useHistory();
 
   const currentUserContextValue = {
     currentUser,
@@ -82,7 +84,12 @@ function App() {
         })
         .catch((err) => {
           console.error(err);
+          history.push("/");
+          setLoggedIn(false);
+          localStorage.removeItem("jwt");
         });
+    } else {
+      setLoggedIn(false);
     }
   }
 
@@ -196,6 +203,7 @@ function App() {
       })
       .catch((error) => {
         console.error(`Error: ${error.status}`);
+        setLoggedIn(false);
       });
   }, []);
 
