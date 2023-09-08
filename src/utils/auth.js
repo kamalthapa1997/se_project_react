@@ -31,7 +31,6 @@ export async function userSignIn({ email, password }) {
   return processResponse(response);
 }
 export async function checkTokenValidity(token) {
-  console.log(token);
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {

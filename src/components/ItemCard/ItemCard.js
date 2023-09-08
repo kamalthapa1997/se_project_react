@@ -5,20 +5,8 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ItemCard = ({ item, onSelectCard, closeModal, handlelikeclick }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
-  // const checkLikeStatus = () => {
-  // return item.likes.some((userId) => userId === currentUser._id);
-  // };
-  // const [isLiked, setIsLiked] = useState(checkLikeStatus);
-  const isLiked = item.likes.some((userId) => userId === currentUser._id);
 
-  // const handleClick = () => {
-  //   try {
-  //     handlelikeclick({ id: item._id, isLiked: !isLiked });
-  //     // setIsLiked(!isLiked);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const isLiked = item.likes.some((userId) => userId === currentUser._id);
 
   return (
     <div className="card__section">
@@ -40,7 +28,6 @@ const ItemCard = ({ item, onSelectCard, closeModal, handlelikeclick }) => {
           <button
             className={isLiked ? "card__afterlike-btn" : "card__beforelike-btn"}
             onClick={() => {
-              console.log(item._id);
               handlelikeclick(item?._id, isLiked);
             }}
           ></button>

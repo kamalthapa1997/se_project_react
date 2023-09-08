@@ -14,7 +14,6 @@ export async function getItems() {
       authorization: `Bearer ${getToken("jwt")}`,
     },
   });
-  console.log(res);
   return processResponse(res);
 }
 
