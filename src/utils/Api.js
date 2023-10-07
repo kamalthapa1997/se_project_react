@@ -1,4 +1,10 @@
-export const baseUrl = "http://localhost:3001";
+// export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://whattowear.chickenkiller.com"
+    : "http://localhost:3001";
+
+//deployed-backend-url is a URL to your deployed back end
 
 export const processResponse = (res) => {
   if (res.ok) {
@@ -35,6 +41,7 @@ export async function postNewItems({ name, weatherType, link }) {
 }
 
 export async function deleteItems(id) {
+  console.log("delete card id", id);
   const token = localStorage.getItem("jwt");
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
@@ -46,6 +53,8 @@ export async function deleteItems(id) {
 }
 
 export async function addCardLike(id) {
+  console.log(" like card id", id);
+
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
@@ -71,6 +80,8 @@ const getToken = (token) => {
 };
 
 export async function removeCardLike(id) {
+  console.log("remove card id", id);
+
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {

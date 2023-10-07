@@ -93,6 +93,7 @@ function App() {
 
   //// ----- SIGH IN ------///////
   const userSignInAccount = ({ email, password }) => {
+    console.log(email, "sighin");
     try {
       ///getting token
       auth.userSignIn({ email, password }).then((data) => {
