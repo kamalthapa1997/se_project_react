@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useState } from "react";
+
 import "./ItemCard.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 

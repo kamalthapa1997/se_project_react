@@ -1,10 +1,20 @@
 // export const baseUrl = "http://localhost:3001";
 export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://whattowear.chickenkiller.com"
+  process.env.NODE_ENV === "development"
+    ? "https://api.whattowear.chickenkiller.com"
     : "http://localhost:3001";
 
+console.log(process.env.NODE_ENV);
 //deployed-backend-url is a URL to your deployed back end
+const getToken = (token) => {
+  if (token) {
+    const currentToken = localStorage.getItem(token);
+    return currentToken;
+  } else {
+    console.error("No token in storage");
+    return null;
+  }
+};
 
 export const processResponse = (res) => {
   if (res.ok) {
@@ -68,16 +78,6 @@ export async function addCardLike(id) {
 
   return processResponse(res);
 }
-
-const getToken = (token) => {
-  if (token) {
-    const currentToken = localStorage.getItem(token);
-    return currentToken;
-  } else {
-    console.error("No token in storage");
-    return null;
-  }
-};
 
 export async function removeCardLike(id) {
   console.log("remove card id", id);
