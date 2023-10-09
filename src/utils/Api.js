@@ -1,6 +1,6 @@
 // export const baseUrl = "http://localhost:3001";
 export const baseUrl =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "production"
     ? "https://api.whattowear.chickenkiller.com"
     : "http://localhost:3001";
 
