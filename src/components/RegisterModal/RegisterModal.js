@@ -42,7 +42,7 @@ const RegisterModal = ({ handleCloseModal, registerUserAccount }) => {
           type="email>"
           name="email"
           minLength={2}
-          maxLength={20}
+          // maxLength={20}
           placeholder="Email"
           value={email}
           onChange={handleEmailChange}
